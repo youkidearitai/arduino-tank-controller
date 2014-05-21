@@ -456,6 +456,7 @@ public class BluetoothChatService {
                     bytes = mmInStream.read(buffer);
                     str.append(new String(buffer, 0, bytes));
                     
+                    // find a CRLF
                     if (str.indexOf("\r\n") != -1) {
                     	// Send the obtained bytes to the UI Activity
                     	mHandler.obtainMessage(BluetoothChat.MESSAGE_READ, str.length(), -1, str.toString().getBytes("UTF-8"))

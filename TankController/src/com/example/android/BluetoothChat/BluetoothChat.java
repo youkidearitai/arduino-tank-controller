@@ -82,6 +82,7 @@ public class BluetoothChat extends Activity {
     // Member object for the chat services
     private BluetoothChatService mChatService = null;
     
+    // Add TankController code
     private TankControllerFormat tankController = null;
 
     private Parameter stopParameter = null;
@@ -304,6 +305,8 @@ public class BluetoothChat extends Activity {
                 String readMessage = new String(readBuf, 0, msg.arg1);
                 mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
                 
+                // If you tried new request while sending request, tank controller is resends from value of seekBar.
+                // (自信がないから日本語で: 送信中に新たな送信が発生していた場合、シークバーの値を送信し直す)
                 boolean isResendParameter = tankController.isResendParameter();
                 tankController.setCompleteSend();                
                 
