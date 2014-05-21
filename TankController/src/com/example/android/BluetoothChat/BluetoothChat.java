@@ -16,14 +16,14 @@
 
 package com.example.android.BluetoothChat;
 
+import com.example.android.BluetoothChat.CommandFactory.AccelFactory;
+import com.example.android.BluetoothChat.CommandFactory.CommandFactory;
+import com.example.android.BluetoothChat.CommandFactory.HoldFactory;
 import com.example.android.BluetoothChat.Commands.BrakeButtonChangeParameter;
 import com.example.android.BluetoothChat.Commands.Parameter;
 import com.example.android.BluetoothChat.Commands.StopButtonChangeParameter;
 import com.example.android.BluetoothChat.Controls.TankControllerFormat;
 
-import CommandFactory.AccelFactory;
-import CommandFactory.CommandFactory;
-import CommandFactory.HoldFactory;
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
 import android.app.Activity;

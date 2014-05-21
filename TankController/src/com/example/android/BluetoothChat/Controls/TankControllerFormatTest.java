@@ -1,11 +1,11 @@
 package com.example.android.BluetoothChat.Controls;
 
 
+import com.example.android.BluetoothChat.CommandFactory.AccelFactory;
+import com.example.android.BluetoothChat.CommandFactory.CommandFactory;
+import com.example.android.BluetoothChat.CommandFactory.HoldFactory;
 import com.example.android.BluetoothChat.Commands.StopButtonChangeParameter;
 
-import CommandFactory.AccelFactory;
-import CommandFactory.CommandFactory;
-import CommandFactory.HoldFactory;
 import junit.framework.TestCase;
 
 public class TankControllerFormatTest extends TestCase {

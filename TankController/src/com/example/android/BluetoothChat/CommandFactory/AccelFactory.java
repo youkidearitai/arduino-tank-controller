@@ -1,4 +1,4 @@
-package CommandFactory;
+package com.example.android.BluetoothChat.CommandFactory;
 
 import com.example.android.BluetoothChat.Commands.ProgressChangeParameter;
 import com.example.android.BluetoothChat.Commands.TurboChangeParameter;
