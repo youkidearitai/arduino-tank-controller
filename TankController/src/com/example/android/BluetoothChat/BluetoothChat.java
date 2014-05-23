@@ -16,6 +16,7 @@
 
 package com.example.android.BluetoothChat;
 
+// Import package for TankController control parameter object.
 import com.example.android.BluetoothChat.CommandFactory.AccelFactory;
 import com.example.android.BluetoothChat.CommandFactory.CommandFactory;
 import com.example.android.BluetoothChat.CommandFactory.HoldFactory;
@@ -92,7 +93,7 @@ public class BluetoothChat extends Activity {
     private CommandFactory rightAccelFactory = null;
     private CommandFactory leftPureFactory = null;
     private CommandFactory rightPureFactory = null;
-
+    
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -111,6 +112,8 @@ public class BluetoothChat extends Activity {
             return;
         }
         
+        // Create a factory object for every seekBar.
+        // シークバーごとにファクトリオブジェクトを作成する
         leftAccelFactory = new AccelFactory();
         rightAccelFactory = new AccelFactory();
 
@@ -177,19 +180,25 @@ public class BluetoothChat extends Activity {
         // Initialize the BluetoothChatService to perform bluetooth connections
         mChatService = new BluetoothChatService(this, mHandler);
 
+        // Get seekBar ID
         SeekBar leftSeekBar = (SeekBar) findViewById(R.id.leftControl);
         SeekBar rightSeekBar = (SeekBar) findViewById(R.id.rightControl);
         
+        // Left SeekBar (control cw/ccw)
         leftSeekBar.setOnSeekBarChangeListener(new LeftControlListener());
+        // Right SeekBar (control cw/ccw)
         rightSeekBar.setOnSeekBarChangeListener(new RightControlListener());
 
+        // Stop button (set level to 256)
         Button stop = (Button) findViewById(R.id.stop);
         stop.setOnClickListener(buttonClicked(stopParameter, stopParameter));
 
+        // Brake button (set level to 0)
         Button brake = (Button) findViewById(R.id.brake);
         brake.setOnClickListener(buttonClicked(brakeParameter, brakeParameter));
     }
     
+    // Brake and stop button push
     private View.OnClickListener buttonClicked(final Parameter leftParameter, final Parameter rightParameter) {
     	return new View.OnClickListener() {	
 			@Override
@@ -259,6 +268,7 @@ public class BluetoothChat extends Activity {
         actionBar.setSubtitle(subTitle);
     }
     
+    // Set parameter from SeekBar
     private void seekControl(Parameter leftParameter, Parameter rightParameter) {
         SeekBar left = (SeekBar) findViewById(R.id.leftControl);
         SeekBar right = (SeekBar) findViewById(R.id.rightControl);
@@ -398,6 +408,7 @@ public class BluetoothChat extends Activity {
         return false;
     }
     
+    // Set parameter for Arduino tank
     private abstract class ControlListener implements OnSeekBarChangeListener {
     	protected boolean isControl(boolean fromUser) {
     		return fromUser && tankController.isControl();
@@ -418,6 +429,7 @@ public class BluetoothChat extends Activity {
     		boolean isControl = isControl(fromUser);
             setSendParameter(LeftProgressParameter(), RightProgressParameter());
             
+            // 
             if (isControl) {
             	sendMessage(tankController.getSendParam());
             }
@@ -440,6 +452,7 @@ public class BluetoothChat extends Activity {
         }
     }
     
+    // Left seekBar
     private class LeftControlListener extends ControlListener {
 
     	@Override
@@ -468,6 +481,7 @@ public class BluetoothChat extends Activity {
     	
     }
     
+    // Right seekBar
     private class RightControlListener extends ControlListener {
 
 		@Override
