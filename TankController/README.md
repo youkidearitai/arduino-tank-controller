@@ -1,4 +1,5 @@
-## Tank Controller
+Tank Controller
+===============
 
 Arduinoを使って、ラジコン作りました。
 このプログラムはそのラジコンをAndroidから制御するためのプログラムです。
