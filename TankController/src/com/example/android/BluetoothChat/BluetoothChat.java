@@ -113,7 +113,7 @@ public class BluetoothChat extends Activity {
         }
         
         // Create a factory object for every seekBar.
-        // ƒV[ƒNƒo[‚²‚Æ‚Éƒtƒ@ƒNƒgƒŠƒIƒuƒWƒFƒNƒg‚ğì¬‚·‚é
+        // ã‚·ãƒ¼ã‚¯ãƒãƒ¼ã”ã¨ã«ãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ä½œæˆã™ã‚‹
         leftAccelFactory = new AccelFactory();
         rightAccelFactory = new AccelFactory();
 
@@ -316,7 +316,7 @@ public class BluetoothChat extends Activity {
                 mConversationArrayAdapter.add(mConnectedDeviceName+":  " + readMessage);
                 
                 // If you tried new request while sending request, tank controller is resends from value of seekBar.
-                // (©M‚ª‚È‚¢‚©‚ç“ú–{Œê‚Å: ‘—M’†‚ÉV‚½‚È‘—M‚ª”­¶‚µ‚Ä‚¢‚½ê‡AƒV[ƒNƒo[‚Ì’l‚ğ‘—M‚µ’¼‚·)
+                // (è‡ªä¿¡ãŒãªã„ã‹ã‚‰æ—¥æœ¬èªã§: é€ä¿¡ä¸­ã«æ–°ãŸãªé€ä¿¡ãŒç™ºç”Ÿã—ã¦ã„ãŸå ´åˆã€ã‚·ãƒ¼ã‚¯ãƒãƒ¼ã®å€¤ã‚’é€ä¿¡ã—ç›´ã™)
                 boolean isResendParameter = tankController.isResendParameter();
                 tankController.setCompleteSend();                
                 

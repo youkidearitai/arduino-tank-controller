@@ -1,11 +1,11 @@
 Tank Controller
 ===============
 
-Arduino���g���āA���W�R�����܂����B
-���̃v���O�����͂��̃��W�R����Android���琧�䂷�邽�߂̃v���O�����ł��B
+Arduinoを使って、ラジコン作りました。
+このプログラムはそのラジコンをAndroidから制御するためのプログラムです。
 
-���̃\�[�X�R�[�h�́ASDK�T���v����BluetoothChat���g�p���Ă��܂�
-BluetoothChat.java�ɑ��c�p�̃V�[�N�o�[�⑗�M�̃^�C�~���O���x�����邽�߂̏�����ǉ����Ă���̂ƁA
-BluetoothChatService.java��Bluetooth SPP�p��UUID�ɕύX�ƁA��M���̕ύX�������Ă��܂��B
+このソースコードは、SDKサンプルのBluetoothChatを使用しています
+BluetoothChat.javaに操縦用のシークバーや送信のタイミングを支持するための処理を追加しているのと、
+BluetoothChatService.javaにBluetooth SPP用のUUIDに変更と、受信時の変更を加えています。
 
-�ڂ����͂�����܂ŁB<http://tekitoh-memdhoi.info/views/609>
+詳しくはこちらまで。<http://tekitoh-memdhoi.info/views/609>
