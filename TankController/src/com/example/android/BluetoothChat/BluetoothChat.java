@@ -292,6 +292,8 @@ public class BluetoothChat extends Activity {
                 switch (msg.arg1) {
                 case BluetoothChatService.STATE_CONNECTED:
                     setStatus(getString(R.string.title_connected_to, mConnectedDeviceName));
+                    tankController.setCompleteSend(); // reset if re-connect
+
                     mConversationArrayAdapter.clear();
                     break;
                 case BluetoothChatService.STATE_CONNECTING:
