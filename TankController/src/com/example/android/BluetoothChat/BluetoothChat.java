@@ -239,6 +239,8 @@ public class BluetoothChat extends Activity {
                     public void run() {
                         if (!recorder.isRecorder()) {
                             Log.d("MoveStateContext", "stop record");
+                            Button record = (Button) findViewById(R.id.record);
+                            record.setText("Record");
                             recorder.endRecord();
                             return;
                         }
@@ -247,9 +249,9 @@ public class BluetoothChat extends Activity {
                             Log.d("MoveStateContext", "run");
                             sendMessage(recorder.play(), true);
                         }
-                        h.postDelayed(this, 10);
+                        h.postDelayed(this, 1);
                     }
-                }, 10);
+                }, 1);
             }
         };
     }
