@@ -24,6 +24,7 @@ import com.example.android.BluetoothChat.Commands.BrakeButtonChangeParameter;
 import com.example.android.BluetoothChat.Commands.Parameter;
 import com.example.android.BluetoothChat.Commands.StopButtonChangeParameter;
 import com.example.android.BluetoothChat.Controls.TankControllerFormat;
+import com.example.android.BluetoothChat.MoveState.MoveStateContext;
 
 import android.annotation.SuppressLint;
 import android.app.ActionBar;
@@ -93,7 +94,9 @@ public class BluetoothChat extends Activity {
     private CommandFactory rightAccelFactory = null;
     private CommandFactory leftPureFactory = null;
     private CommandFactory rightPureFactory = null;
-    
+
+    private MoveStateContext recorder = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -124,6 +127,7 @@ public class BluetoothChat extends Activity {
         rightPureFactory = new HoldFactory();
         
         tankController = new TankControllerFormat();
+        recorder = new MoveStateContext();
     }
     
     private Parameter getChangeParameter(CommandFactory factory) {
@@ -196,6 +200,9 @@ public class BluetoothChat extends Activity {
         // Brake button (set level to 0)
         Button brake = (Button) findViewById(R.id.brake);
         brake.setOnClickListener(buttonClicked(brakeParameter, brakeParameter));
+
+        Button record = (Button) findViewById(R.id.record);
+        record.setOnClickListener(startRecord());
     }
     
     // Brake and stop button push
@@ -207,6 +214,44 @@ public class BluetoothChat extends Activity {
 		        sendMessage(tankController.getSendParam());
 			}
 		};
+    }
+
+    // Start Record
+    private View.OnClickListener startRecord() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (!recorder.isRecorder()) {
+                    Button record = (Button) findViewById(R.id.record);
+                    record.setText("Recording...");
+                    recorder.startRecord();
+                    return;
+                } else {
+                    Button record = (Button) findViewById(R.id.record);
+                    record.setText("Play");
+                    tankController.setCompleteSend();
+                    recorder.startPlay();
+                }
+                final Handler h = new Handler();
+
+                h.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!recorder.isRecorder()) {
+                            Log.d("MoveStateContext", "stop record");
+                            recorder.endRecord();
+                            return;
+                        }
+
+                        if (recorder.isPlayCommand()) {
+                            Log.d("MoveStateContext", "run");
+                            sendMessage(recorder.play(), true);
+                        }
+                        h.postDelayed(this, 10);
+                    }
+                }, 10);
+            }
+        };
     }
 
     @Override
@@ -253,6 +298,25 @@ public class BluetoothChat extends Activity {
         // Check that there's actually something to send
         if (message.length() > 0) {
             // Get the message bytes and tell the BluetoothChatService to write
+            recorder.record(message);
+            byte[] send = message.getBytes();
+            mChatService.write(send);
+        }
+    }
+
+    private void sendMessage(String message, boolean resend) {
+        // Check that we're actually connected before trying anything
+        if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
+            Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check that there's actually something to send
+        if (message.length() > 0) {
+            // Get the message bytes and tell the BluetoothChatService to write
+            if (!resend) {
+                recorder.record(message);
+            }
             byte[] send = message.getBytes();
             mChatService.write(send);
         }
