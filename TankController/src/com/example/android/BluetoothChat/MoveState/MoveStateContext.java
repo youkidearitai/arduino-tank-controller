@@ -16,6 +16,11 @@ public class MoveStateContext {
 
     public void startPlay() {
         this.state.stopRecord();
+        this.state = new MovePlayer(
+                this.state.getRecorder(),
+                this.state.getTimestamp(),
+                this.state.getStarttimestamp()
+        );
     }
 
     public void record(String state) {

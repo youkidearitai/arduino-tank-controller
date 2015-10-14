@@ -29,19 +29,26 @@ public class MoveRecorder extends MoveState {
         this.startTimestamp = System.currentTimeMillis();
     }
 
-    public boolean isPlayCommand() {
-        return this.timestamp.get(this.recorder.size() - 1) < (System.currentTimeMillis() - this.startTimestamp);
-    }
-
     public String play() {
-        String record = this.recorder.get(this.recorder.size() - 1);
-        this.timestamp.remove(this.timestamp.size() - 1);
-        this.recorder.remove(this.recorder.size() - 1);
-
-        return record;
+        return null;
     }
 
     public boolean isRecorder() {
-        return this.recorder.size() > 0;
+        return true;
+    }
+
+    @Override
+    public ArrayList<String> getRecorder() {
+        return recorder;
+    }
+
+    @Override
+    public ArrayList<Long> getTimestamp() {
+        return timestamp;
+    }
+
+    @Override
+    public long getStarttimestamp() {
+        return startTimestamp;
     }
 }

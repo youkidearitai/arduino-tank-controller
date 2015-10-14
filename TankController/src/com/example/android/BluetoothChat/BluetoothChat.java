@@ -247,7 +247,7 @@ public class BluetoothChat extends Activity {
 
                         if (recorder.isPlayCommand()) {
                             Log.d("MoveStateContext", "run");
-                            sendMessage(recorder.play(), true);
+                            sendMessage(recorder.play());
                         }
                         h.postDelayed(this, 1);
                     }
@@ -301,24 +301,6 @@ public class BluetoothChat extends Activity {
         if (message.length() > 0) {
             // Get the message bytes and tell the BluetoothChatService to write
             recorder.record(message);
-            byte[] send = message.getBytes();
-            mChatService.write(send);
-        }
-    }
-
-    private void sendMessage(String message, boolean resend) {
-        // Check that we're actually connected before trying anything
-        if (mChatService.getState() != BluetoothChatService.STATE_CONNECTED) {
-            Toast.makeText(this, R.string.not_connected, Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // Check that there's actually something to send
-        if (message.length() > 0) {
-            // Get the message bytes and tell the BluetoothChatService to write
-            if (!resend) {
-                recorder.record(message);
-            }
             byte[] send = message.getBytes();
             mChatService.write(send);
         }
