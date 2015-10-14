@@ -2,6 +2,7 @@ package com.example.android.BluetoothChat.MoveState;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.lang.System;
 import android.util.Log;
 
 /**
@@ -17,12 +18,12 @@ public class MoveRecorder extends MoveState {
     public MoveRecorder() {
         this.recorder = new ArrayList<String>();
         this.timestamp = new ArrayList<Long>();
-        this.startTimestamp = new Date().getTime();
+        this.startTimestamp = System.currentTimeMillis();
     }
 
     public void record(String state) {
         this.recorder.add(0, state);
-        this.timestamp.add(0, (new Date()).getTime() - this.startTimestamp);
+        this.timestamp.add(0, (System.currentTimeMillis() - this.startTimestamp));
     }
 
     public void stopRecord() {
@@ -30,7 +31,7 @@ public class MoveRecorder extends MoveState {
     }
 
     public boolean isPlayCommand() {
-        return this.timestamp.get(this.recorder.size() - 1) < (new Date()).getTime() - this.startTimestamp;
+        return this.timestamp.get(this.recorder.size() - 1) < (System.currentTimeMillis() - this.startTimestamp);
     }
 
     public String play() {
