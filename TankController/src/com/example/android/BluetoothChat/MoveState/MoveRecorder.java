@@ -1,7 +1,6 @@
 package com.example.android.BluetoothChat.MoveState;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.lang.System;
 import android.util.Log;
 
@@ -27,7 +26,7 @@ public class MoveRecorder extends MoveState {
     }
 
     public void stopRecord() {
-        this.startTimestamp = new Date().getTime();
+        this.startTimestamp = System.currentTimeMillis();
     }
 
     public boolean isPlayCommand() {
