@@ -21,7 +21,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="528dp" >
+        android:layout_height="match_parent" >
 
         <SeekBar
             android:id="@+id/leftControl"
@@ -39,7 +39,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginTop="165dp"
+            android:layout_marginTop="100dp"
             android:layout_toLeftOf="@+id/stop"
             android:max="511"
             android:progress="256"
@@ -48,7 +48,7 @@
 
         <Button
             android:id="@+id/record"
-            android:layout_width="300dp"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:layout_marginTop="0dp"
@@ -57,21 +57,34 @@
             android:text="record" />
 
         <Button
-            android:id="@+id/brake"
-            android:layout_width="300dp"
+            android:id="@+id/voice"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="93dp"
-            android:layout_toLeftOf="@+id/leftControl"
-            android:text="@string/brake" />
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:layout_toRightOf="@+id/rightControl"
+            android:text="voice" />
 
         <Button
             android:id="@+id/stop"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/brake"
+            android:layout_below="@+id/rightControl"
             android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
             android:text="@string/stop" />
+
+        <Button
+            android:id="@+id/brake"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:layout_above="@+id/stop"
+            android:layout_centerHorizontal="true"
+            android:text="@string/brake" />
+
 
         <Switch
             android:id="@+id/turbo"

@@ -35,6 +35,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.speech.RecognitionListener;
+import android.speech.RecognizerIntent;
+import android.speech.SpeechRecognizer;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -47,6 +50,8 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Switch;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * This is the main Activity that displays the current chat session.
@@ -97,6 +102,8 @@ public class BluetoothChat extends Activity {
 
     private MoveStateContext recorder = null;
 
+    private SpeechRecognizer recognizer = null;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,6 +135,71 @@ public class BluetoothChat extends Activity {
         
         tankController = new TankControllerFormat();
         recorder = new MoveStateContext();
+
+        // SpeechRecognizer
+        recognizer = SpeechRecognizer.createSpeechRecognizer(getApplicationContext());
+        recognizer.setRecognitionListener(new RecognitionListener() {
+
+            @Override
+            public void onReadyForSpeech(Bundle params) {
+                Button button = (Button)findViewById(R.id.voice);
+                button.setText("Tell me...");
+            }
+
+            @Override
+            public void onBeginningOfSpeech() {
+                Button button = (Button)findViewById(R.id.voice);
+                button.setText("Hearing...");
+            }
+
+            @Override
+            public void onRmsChanged(float rmsdB) {
+
+            }
+
+            @Override
+            public void onBufferReceived(byte[] buffer) {
+
+            }
+
+            @Override
+            public void onEndOfSpeech() {
+                Button button = (Button)findViewById(R.id.voice);
+                button.setText("VOICE");
+            }
+
+            @Override
+            public void onError(int error) {
+                Log.d(TAG, "ERROR:" + String.valueOf(error));
+            }
+
+            @Override
+            public void onResults(Bundle results) {
+                Button button = (Button)findViewById(R.id.voice);
+
+                ArrayList<String> stringArrayList = results.getStringArrayList(
+                        SpeechRecognizer.RESULTS_RECOGNITION
+                );
+
+                String str = "";
+                for (int i = 0, limit = stringArrayList.size(); i < limit; i++) {
+                    str += stringArrayList.get(i);
+                }
+
+                button.setText(str);
+            }
+
+            @Override
+            public void onPartialResults(Bundle partialResults) {
+
+            }
+
+            @Override
+            public void onEvent(int eventType, Bundle params) {
+
+            }
+
+        });
     }
     
     private Parameter getChangeParameter(CommandFactory factory) {
@@ -203,6 +275,24 @@ public class BluetoothChat extends Activity {
 
         Button record = (Button) findViewById(R.id.record);
         record.setOnClickListener(startRecord());
+
+        Button voice = (Button) findViewById(R.id.voice);
+        voice.setOnClickListener(startVoice());
+    }
+
+    private View.OnClickListener startVoice() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+                intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
+                                RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+                intent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, getPackageName());
+
+                recognizer.startListening(intent);
+            }
+        };
     }
     
     // Brake and stop button push
@@ -457,7 +547,7 @@ public class BluetoothChat extends Activity {
         }
         return false;
     }
-    
+
     // Set parameter for Arduino tank
     private abstract class ControlListener implements OnSeekBarChangeListener {
     	protected boolean isControl(boolean fromUser) {
