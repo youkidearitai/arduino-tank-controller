@@ -69,6 +69,7 @@ public class LexicalAnalyzer {
             }
 
             if (this.isint.matcher(word).matches()) {
+                Log.d("LexicalAnalyzerInt", word);
                 this.tokens.add(
                     this.position, new TokenStorage(NUM, Integer.parseInt(word))
                 );

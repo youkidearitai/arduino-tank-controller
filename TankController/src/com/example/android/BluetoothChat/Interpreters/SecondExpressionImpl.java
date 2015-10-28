@@ -14,9 +14,9 @@ public class SecondExpressionImpl extends Expression {
     public void term() {
         this.expression.term();
 
-        Log.d("SecondExpressionImpl", "NUM");
-        if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).equals(CodeAnalyzer.NUM)) {
+        if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).getToken() == CodeAnalyzer.NUM) {
             CodeAnalyzer.seconds += CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).getNumber();
+            Log.d("SecondExpressionImpl", String.valueOf(CodeAnalyzer.seconds));
             CodeAnalyzer.moveRecorder.record(
                 CodeAnalyzer.seconds * 1000,
                 "256,256\r\n"

@@ -30,8 +30,8 @@ public class CodeAnalyzer {
         seconds = 1;
 
         CodeAnalyzer.tokens = tokens;
-        this.expression = new SecondExpressionImpl(null);
-        this.expression = new CalculateExpressionImpl(this.expression);
+        this.expression = new CalculateExpressionImpl(null);
+        this.expression = new SecondExpressionImpl(this.expression);
     }
 
     public void analyze() {
