@@ -21,13 +21,13 @@ public class CodeAnalyzer {
     public static final int BRAKE = 8;
 
     public static MoveRecorder moveRecorder = new MoveRecorder();
-    public static int seconds = 1;
+    public static int seconds = 0;
 
     public Expression expression;
 
     public CodeAnalyzer(ArrayList<TokenStorage> tokens) {
         moveRecorder = new MoveRecorder();
-        seconds = 1;
+        seconds = 0;
 
         CodeAnalyzer.tokens = tokens;
         this.expression = new CalculateExpressionImpl(null);
