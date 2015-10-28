@@ -182,11 +182,40 @@ public class BluetoothChat extends Activity {
                 );
 
                 String str = "";
-                for (int i = 0, limit = stringArrayList.size(); i < limit; i++) {
-                    str += stringArrayList.get(i);
-                }
 
+                try {
+                    str = stringArrayList.get(0);
+                } catch (NullPointerException e) {
+                    str = "";
+                }
                 button.setText(str);
+
+                Log.d("SpeechRecognizer", str);
+
+                tankController.setCompleteSend();
+                recorder.startRecognizer(str);
+                recorder.startPlay();
+
+                final Handler h = new Handler();
+
+                h.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!recorder.isRecorder()) {
+                            Log.d("MoveStateContext", "stop recognizer");
+                            Button record = (Button) findViewById(R.id.voice);
+                            record.setText("VOICE");
+                            recorder.endRecord();
+                            return;
+                        }
+
+                        if (recorder.isPlayCommand()) {
+                            Log.d("MoveStateContext", "running recognizer");
+                            sendMessage(recorder.play());
+                        }
+                        h.postDelayed(this, 1);
+                    }
+                }, 1);
             }
 
             @Override

@@ -25,6 +25,11 @@ public class MoveRecorder extends MoveState {
         this.timestamp.add(0, (System.currentTimeMillis() - this.startTimestamp));
     }
 
+    public void record(long second, String state) {
+        this.recorder.add(0, state);
+        this.timestamp.add(0, second);
+    }
+
     public void stopRecord() {
         this.startTimestamp = System.currentTimeMillis();
     }

@@ -23,6 +23,10 @@ public class MoveStateContext {
         );
     }
 
+    public void startRecognizer(String program) {
+        this.state = new SpeechRecognizerState(program);
+    }
+
     public void record(String state) {
         this.state.record(state);
     }
