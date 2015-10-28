@@ -26,6 +26,7 @@ public class MoveRecorder extends MoveState {
     }
 
     public void record(long second, String state) {
+        Log.d("MoveRecorder.record", String.valueOf(second));
         this.recorder.add(0, state);
         this.timestamp.add(0, second);
     }

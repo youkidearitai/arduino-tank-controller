@@ -13,7 +13,7 @@ public class CalculateExpressionImpl extends Expression {
 
     @Override
     public void term() {
-        Log.d("CalculateExpressionImpl", "CAL");
+        Log.d("CalculateExpressionImpl", String.valueOf(CodeAnalyzer.seconds));
 
         if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).getToken() == CodeAnalyzer.AHEAD) {
             CodeAnalyzer.moveRecorder.record(

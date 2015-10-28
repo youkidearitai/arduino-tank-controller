@@ -38,7 +38,6 @@ public class CodeAnalyzer {
         int size = CodeAnalyzer.tokens.size();
         for (CodeAnalyzer.tokenIndex = 0; CodeAnalyzer.tokenIndex < size; CodeAnalyzer.tokenIndex++) {
             this.expression.term();
-            CodeAnalyzer.tokenIndex++;
         }
         moveRecorder.stopRecord();
     }
