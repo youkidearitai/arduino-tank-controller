@@ -78,9 +78,7 @@ public class LexicalAnalyzer {
             }
 
             if (word.equals("三")) {
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, 3)
-                );
+                this.tokens.add(new TokenStorage(NUM, 3));
             }
 
             if (word.equals("四")) {
@@ -100,9 +98,7 @@ public class LexicalAnalyzer {
             }
 
             if (word.equals("八")) {
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, 8)
-                );
+                this.tokens.add(new TokenStorage(NUM, 8));
             }
 
             if (word.equals("九")) {
