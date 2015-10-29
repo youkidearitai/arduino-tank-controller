@@ -11,6 +11,7 @@ public class CodeAnalyzer {
     public static ArrayList<TokenStorage> tokens;
     public static int tokenIndex = 0;
 
+    public static final int EOL   = 0;
     public static final int WORD  = 1;
     public static final int NUM   = 2;
     public static final int AHEAD = 3;

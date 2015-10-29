@@ -17,6 +17,7 @@ public class LexicalAnalyzer {
     public ArrayList<TokenStorage> tokens = null;
 
     // 字句解析用トークン
+    public static final int EOL   = 0;
     public static final int WORD  = 1;
     public static final int NUM   = 2;
     public static final int AHEAD = 3;
@@ -44,103 +45,72 @@ public class LexicalAnalyzer {
 
             Log.d("LexicalAnalyzer", word);
             if (word.equals("前")) {
-                this.tokens.add(this.position, new TokenStorage(AHEAD));
-                continue;
+                this.tokens.add(new TokenStorage(AHEAD));
             }
 
             if (word.equals("後")) {
-                this.tokens.add(this.position, new TokenStorage(BACK));
-                continue;
+                this.tokens.add(new TokenStorage(BACK));
             }
 
             if (word.equals("左")) {
-                this.tokens.add(this.position, new TokenStorage(LEFT));
-                continue;
+                this.tokens.add(new TokenStorage(LEFT));
             }
 
             if (word.equals("右")) {
-                this.tokens.add(this.position, new TokenStorage(RIGHT));
-                continue;
+                this.tokens.add(new TokenStorage(RIGHT));
             }
 
             if (word.equals("止")) {
-                this.tokens.add(this.position, new TokenStorage(STOP));
-                continue;
+                this.tokens.add(new TokenStorage(STOP));
             }
 
             if (this.isint.matcher(word).matches()) {
                 Log.d("LexicalAnalyzerInt", word);
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, Integer.parseInt(word))
-                );
-                continue;
+                this.tokens.add(new TokenStorage(NUM, Integer.parseInt(word)));
             }
 
             if (word.equals("一")) {
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, 1)
-                );
-                continue;
+                this.tokens.add(new TokenStorage(NUM, 1));
             }
 
             if (word.equals("二")) {
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, 2)
-                );
-                continue;
+                this.tokens.add(new TokenStorage(NUM, 2));
             }
 
             if (word.equals("三")) {
                 this.tokens.add(
                     this.position, new TokenStorage(NUM, 3)
                 );
-                continue;
             }
 
             if (word.equals("四")) {
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, 4)
-                );
-                continue;
+                this.tokens.add(new TokenStorage(NUM, 4));
             }
 
             if (word.equals("五")) {
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, 5)
-                );
-                continue;
+                this.tokens.add(new TokenStorage(NUM, 5));
             }
 
             if (word.equals("六")) {
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, 6)
-                );
-                continue;
+                this.tokens.add(new TokenStorage(NUM, 6));
             }
 
             if (word.equals("七")) {
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, 7)
-                );
-                continue;
+                this.tokens.add(new TokenStorage(NUM, 7));
             }
 
             if (word.equals("八")) {
                 this.tokens.add(
                     this.position, new TokenStorage(NUM, 8)
                 );
-                continue;
             }
 
             if (word.equals("九")) {
-                this.tokens.add(
-                    this.position, new TokenStorage(NUM, 9)
-                );
-                continue;
+                this.tokens.add(new TokenStorage(NUM, 9));
             }
-
-            this.tokens.add(this.position, new TokenStorage(WORD));
         }
+
+        this.tokens.add(new TokenStorage(EOL));
     }
 
     public ArrayList<TokenStorage> getTokens() {
