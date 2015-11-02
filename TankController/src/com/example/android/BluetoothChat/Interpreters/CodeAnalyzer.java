@@ -20,6 +20,9 @@ public class CodeAnalyzer {
     public static final int RIGHT = 6;
     public static final int STOP  = 7;
     public static final int BRAKE = 8;
+    public static final int LOOP  = 9;
+    public static final int SEPL  = 10;
+    public static final int SEC   = 11;
 
     public static MoveRecorder moveRecorder = new MoveRecorder();
     public static int seconds = 0;
@@ -33,6 +36,7 @@ public class CodeAnalyzer {
         CodeAnalyzer.tokens = tokens;
         this.expression = new CalculateExpressionImpl(null);
         this.expression = new SecondExpressionImpl(this.expression);
+        this.expression = new ForLoopExpressionImpl(this.expression);
     }
 
     public void analyze() {

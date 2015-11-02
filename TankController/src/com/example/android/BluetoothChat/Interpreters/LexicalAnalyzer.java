@@ -26,6 +26,9 @@ public class LexicalAnalyzer {
     public static final int RIGHT = 6;
     public static final int STOP  = 7;
     public static final int BRAKE = 8;
+    public static final int LOOP  = 9;
+    public static final int SEPL  = 10;
+    public static final int SEC   = 11;
 
     private Pattern isint;
 
@@ -44,6 +47,18 @@ public class LexicalAnalyzer {
             String word = this.str.substring(this.position, this.position + 1);
 
             Log.d("LexicalAnalyzer", word);
+            if (word.equals("を")) {
+                this.tokens.add(new TokenStorage(SEPL));
+            }
+
+            if (word.equals("回")) {
+                this.tokens.add(new TokenStorage(LOOP));
+            }
+
+            if (word.equals("秒")) {
+                this.tokens.add(new TokenStorage(SEC));
+            }
+
             if (word.equals("前")) {
                 this.tokens.add(new TokenStorage(AHEAD));
             }
