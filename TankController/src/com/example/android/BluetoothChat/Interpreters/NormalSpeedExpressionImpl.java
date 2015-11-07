@@ -15,5 +15,6 @@ public class NormalSpeedExpressionImpl extends Expression {
         if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).getToken() == CodeAnalyzer.NRML) {
             CodeAnalyzer.parameter = CodeAnalyzer.normalParameter;
         }
+        this.expression.term();
     }
 }
