@@ -29,6 +29,8 @@ public class LexicalAnalyzer {
     public static final int LOOP  = 9;
     public static final int SEPL  = 10;
     public static final int SEC   = 11;
+    public static final int RAPID = 12;
+    public static final int NRML  = 13;
 
     private Pattern isint;
 
@@ -49,6 +51,14 @@ public class LexicalAnalyzer {
             Log.d("LexicalAnalyzer", word);
             if (word.equals("を")) {
                 this.tokens.add(new TokenStorage(SEPL));
+            }
+
+            if (word.equals("速") || word.equals("早")) {
+                this.tokens.add(new TokenStorage(RAPID));
+            }
+
+            if (word.equals("遅")) {
+                this.tokens.add(new TokenStorage(NRML));
             }
 
             if (word.equals("回")) {

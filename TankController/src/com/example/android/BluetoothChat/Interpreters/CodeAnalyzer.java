@@ -1,6 +1,7 @@
 package com.example.android.BluetoothChat.Interpreters;
 
 import com.example.android.BluetoothChat.Commands.HoldParameter;
+import com.example.android.BluetoothChat.Commands.HoldTurboParameter;
 import com.example.android.BluetoothChat.Commands.Parameter;
 import com.example.android.BluetoothChat.MoveState.MoveRecorder;
 
@@ -25,11 +26,14 @@ public class CodeAnalyzer {
     public static final int LOOP  = 9;
     public static final int SEPL  = 10;
     public static final int SEC   = 11;
+    public static final int RAPID = 12;
+    public static final int NRML  = 13;
 
     public static MoveRecorder moveRecorder = new MoveRecorder();
     public static int seconds = 0;
 
     public static Parameter parameter = new HoldParameter();
+    public static Parameter rapidParameter = new HoldTurboParameter();
 
     public Expression expression;
 
@@ -37,9 +41,12 @@ public class CodeAnalyzer {
         moveRecorder = new MoveRecorder();
         seconds = 0;
 
+        parameter = new HoldParameter();
+
         CodeAnalyzer.tokens = tokens;
         this.expression = new CalculateExpressionImpl(null);
         this.expression = new EolExpressionImpl(this.expression);
+        this.expression = new RapidExpressionImpl(this.expression);
         this.expression = new SecondExpressionImpl(this.expression);
         this.expression = new ForLoopExpressionImpl(this.expression);
     }
