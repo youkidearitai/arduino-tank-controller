@@ -59,6 +59,10 @@ public class LexicalAnalyzer {
                 this.tokens.add(new TokenStorage(SEC));
             }
 
+            if (word.equals("つ")) {
+                this.tokens.add(new TokenStorage(SEC));
+            }
+
             if (word.equals("前")) {
                 this.tokens.add(new TokenStorage(AHEAD));
             }
