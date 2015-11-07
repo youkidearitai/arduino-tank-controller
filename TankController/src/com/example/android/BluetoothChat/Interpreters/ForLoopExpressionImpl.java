@@ -13,7 +13,7 @@ public class ForLoopExpressionImpl extends Expression {
     public ForLoopExpressionImpl(Expression expression) {
         super(expression);
         baseAddress = 0;
-        loopCounter = 0;
+        loopCounter = 1;
         loopLimit = 0;
     }
 
@@ -28,7 +28,7 @@ public class ForLoopExpressionImpl extends Expression {
                     loopCounter++;
                 } else {
                     baseAddress = CodeAnalyzer.tokenIndex;
-                    loopCounter = 0;
+                    loopCounter = 1;
                 }
 
                 CodeAnalyzer.tokenIndex = baseAddress;
