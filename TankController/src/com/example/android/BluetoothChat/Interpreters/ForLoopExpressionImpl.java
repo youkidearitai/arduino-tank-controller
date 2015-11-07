@@ -29,13 +29,6 @@ public class ForLoopExpressionImpl extends Expression {
                 } else {
                     baseAddress = CodeAnalyzer.tokenIndex;
                     loopCounter = 0;
-                    
-                    if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex + 1).getToken() == CodeAnalyzer.EOL) {
-                        CodeAnalyzer.moveRecorder.record(
-                                CodeAnalyzer.seconds * 1000,
-                                "256,256\r\n"
-                        );
-                    }
                 }
 
                 CodeAnalyzer.tokenIndex = baseAddress;

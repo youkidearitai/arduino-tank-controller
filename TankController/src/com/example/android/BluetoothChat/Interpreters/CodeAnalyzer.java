@@ -35,6 +35,7 @@ public class CodeAnalyzer {
 
         CodeAnalyzer.tokens = tokens;
         this.expression = new CalculateExpressionImpl(null);
+        this.expression = new EolExpressionImpl(this.expression);
         this.expression = new SecondExpressionImpl(this.expression);
         this.expression = new ForLoopExpressionImpl(this.expression);
     }
