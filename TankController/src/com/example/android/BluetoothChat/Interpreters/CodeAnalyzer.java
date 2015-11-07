@@ -1,5 +1,7 @@
 package com.example.android.BluetoothChat.Interpreters;
 
+import com.example.android.BluetoothChat.Commands.HoldParameter;
+import com.example.android.BluetoothChat.Commands.Parameter;
 import com.example.android.BluetoothChat.MoveState.MoveRecorder;
 
 import java.util.ArrayList;
@@ -26,6 +28,8 @@ public class CodeAnalyzer {
 
     public static MoveRecorder moveRecorder = new MoveRecorder();
     public static int seconds = 0;
+
+    public static Parameter parameter = new HoldParameter();
 
     public Expression expression;
 
