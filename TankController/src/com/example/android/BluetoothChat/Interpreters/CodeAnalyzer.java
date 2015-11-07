@@ -32,7 +32,9 @@ public class CodeAnalyzer {
     public static MoveRecorder moveRecorder = new MoveRecorder();
     public static int seconds = 0;
 
-    public static Parameter parameter = new HoldParameter();
+    public static Parameter parameter = null;
+
+    public static Parameter normalParameter = new HoldParameter();
     public static Parameter rapidParameter = new HoldTurboParameter();
 
     public Expression expression;
@@ -47,6 +49,7 @@ public class CodeAnalyzer {
         this.expression = new CalculateExpressionImpl(null);
         this.expression = new EolExpressionImpl(this.expression);
         this.expression = new RapidExpressionImpl(this.expression);
+        this.expression = new NormalSpeedExpressionImpl(this.expression);
         this.expression = new SecondExpressionImpl(this.expression);
         this.expression = new ForLoopExpressionImpl(this.expression);
     }
