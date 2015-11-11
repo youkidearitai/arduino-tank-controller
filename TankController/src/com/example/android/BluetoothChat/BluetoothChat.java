@@ -45,10 +45,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.Switch;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -176,6 +178,7 @@ public class BluetoothChat extends Activity {
             @Override
             public void onResults(Bundle results) {
                 Button button = (Button)findViewById(R.id.voice);
+                TextView textView = (TextView)findViewById(R.id.program);
 
                 ArrayList<String> stringArrayList = results.getStringArrayList(
                         SpeechRecognizer.RESULTS_RECOGNITION
@@ -189,6 +192,7 @@ public class BluetoothChat extends Activity {
                     str = "";
                 }
                 button.setText(str);
+                textView.setText(str);
 
                 Log.d("SpeechRecognizer", str);
 
@@ -307,6 +311,43 @@ public class BluetoothChat extends Activity {
 
         Button voice = (Button) findViewById(R.id.voice);
         voice.setOnClickListener(startVoice());
+
+        Button program = (Button) findViewById(R.id.executeprogram);
+        program.setOnClickListener(executeProgram());
+    }
+
+    private View.OnClickListener executeProgram() {
+        return new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                EditText editText = (EditText) findViewById(R.id.program);
+
+                tankController.setCompleteSend();
+                recorder.startRecognizer(editText.getText().toString());
+                recorder.startPlay();
+
+                final Handler h = new Handler();
+
+                h.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (!recorder.isRecorder()) {
+                            Log.d("MoveStateContext", "stop recognizer");
+                            Button record = (Button) findViewById(R.id.voice);
+                            record.setText("VOICE");
+                            recorder.endRecord();
+                            return;
+                        }
+
+                        if (recorder.isPlayCommand()) {
+                            Log.d("MoveStateContext", "running recognizer");
+                            sendMessage(recorder.play());
+                        }
+                        h.postDelayed(this, 1);
+                    }
+                }, 1);
+            }
+        };
     }
 
     private View.OnClickListener startVoice() {

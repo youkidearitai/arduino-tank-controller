@@ -79,11 +79,10 @@
             android:id="@+id/brake"
             android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="0dp"
-            android:layout_above="@+id/stop"
-            android:layout_centerHorizontal="true"
-            android:text="@string/brake" />
+            android:layout_below="@+id/stop"
+            android:text="@string/brake"
+            android:layout_alignParentBottom="false"
+            android:layout_centerHorizontal="true" />
 
 
         <Switch
@@ -93,6 +92,25 @@
             android:layout_alignBottom="@+id/leftControl"
             android:layout_centerHorizontal="true"
             android:text="@string/turbo" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Execute"
+            android:id="@+id/executeprogram"
+            android:layout_above="@+id/leftControl"
+            android:layout_toLeftOf="@+id/leftControl"
+            android:layout_toStartOf="@+id/leftControl" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/program"
+            android:layout_alignTop="@+id/executeprogram"
+            android:layout_toRightOf="@+id/rightControl"
+            android:layout_alignBottom="@+id/executeprogram"
+            android:layout_toLeftOf="@+id/executeprogram"
+            android:layout_toStartOf="@+id/executeprogram" />
 
     </RelativeLayout>
 
