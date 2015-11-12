@@ -16,6 +16,13 @@ public class SecondExpressionImpl extends Expression {
             if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex + 1).getToken() == CodeAnalyzer.SEC) {
                 CodeAnalyzer.seconds += CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).getNumber();
                 Log.d("SecondExpressionImpl", String.valueOf(CodeAnalyzer.seconds));
+
+                if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex + 2).getToken() == CodeAnalyzer.EOL) {
+                    CodeAnalyzer.moveRecorder.record(
+                            CodeAnalyzer.seconds * 1000,
+                            "256,256\r\n"
+                    );
+                }
             }
         }
         this.expression.term();

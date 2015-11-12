@@ -47,7 +47,6 @@ public class CodeAnalyzer {
 
         CodeAnalyzer.tokens = tokens;
         this.expression = new CalculateExpressionImpl(null);
-        this.expression = new EolExpressionImpl(this.expression);
         this.expression = new RapidExpressionImpl(this.expression);
         this.expression = new NormalSpeedExpressionImpl(this.expression);
         this.expression = new SecondExpressionImpl(this.expression);
