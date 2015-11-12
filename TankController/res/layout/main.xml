@@ -110,7 +110,9 @@
             android:layout_toRightOf="@+id/rightControl"
             android:layout_alignBottom="@+id/executeprogram"
             android:layout_toLeftOf="@+id/executeprogram"
-            android:layout_toStartOf="@+id/executeprogram" />
+            android:layout_toStartOf="@+id/executeprogram"
+            android:focusableInTouchMode="true"
+            android:focusable="true" />
 
     </RelativeLayout>
 
