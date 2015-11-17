@@ -94,8 +94,31 @@ public class LexicalAnalyzer {
             }
 
             if (this.isint.matcher(word).matches()) {
+                boolean dot = true;
+
+                while (this.position < length) {
+                    this.position++;
+                    String temp = this.str.substring(this.position, this.position + 1);
+
+                    if (this.isint.matcher(temp).matches()) {
+                        word += temp;
+                    } else if (temp.equals(".") && dot) {
+                        word += temp;
+                        dot = false;
+                    } else {
+                        this.position--;
+                        break;
+                    }
+                }
+
+                this.tokens.add(
+                    new TokenStorage(
+                        NUM,
+                        Double.parseDouble(word)
+                    )
+                );
+
                 Log.d("LexicalAnalyzerInt", word);
-                this.tokens.add(new TokenStorage(NUM, Integer.parseInt(word)));
             }
 
             if (word.equals("一")) {

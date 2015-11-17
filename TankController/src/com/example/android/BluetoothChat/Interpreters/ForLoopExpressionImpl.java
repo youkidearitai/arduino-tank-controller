@@ -32,7 +32,7 @@ public class ForLoopExpressionImpl extends Expression {
 
                     if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex + 1).getToken() == CodeAnalyzer.EOL) {
                         CodeAnalyzer.moveRecorder.record(
-                                CodeAnalyzer.seconds * 1000,
+                                CodeAnalyzer.seconds,
                                 "256,256\r\n"
                         );
                     }

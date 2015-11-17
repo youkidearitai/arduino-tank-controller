@@ -20,7 +20,7 @@ public class CalculateExpressionImpl extends Expression {
             int level = CodeAnalyzer.parameter.getLevel();
 
             CodeAnalyzer.moveRecorder.record(
-                CodeAnalyzer.seconds * 1000,
+                CodeAnalyzer.seconds,
                 String.valueOf(level) + "," + String.valueOf(level) + "\r\n"
             );
         }
@@ -30,7 +30,7 @@ public class CalculateExpressionImpl extends Expression {
             int level = CodeAnalyzer.parameter.getLevel();
 
             CodeAnalyzer.moveRecorder.record(
-                CodeAnalyzer.seconds * 1000,
+                CodeAnalyzer.seconds,
                 String.valueOf(level) + "," + String.valueOf(level) + "\r\n"
             );
         }
@@ -42,7 +42,7 @@ public class CalculateExpressionImpl extends Expression {
             int rightLevel = CodeAnalyzer.parameter.getLevel();
 
             CodeAnalyzer.moveRecorder.record(
-                CodeAnalyzer.seconds * 1000,
+                CodeAnalyzer.seconds,
                 String.valueOf(leftLevel) + "," + String.valueOf(rightLevel) + "\r\n"
             );
         }
@@ -55,7 +55,7 @@ public class CalculateExpressionImpl extends Expression {
 
 
             CodeAnalyzer.moveRecorder.record(
-                CodeAnalyzer.seconds * 1000,
+                CodeAnalyzer.seconds,
                 String.valueOf(leftLevel) + "," + String.valueOf(rightLevel) + "\r\n"
             );
         }
@@ -67,7 +67,7 @@ public class CalculateExpressionImpl extends Expression {
             int rightLevel = CodeAnalyzer.parameter.getLevel();
 
             CodeAnalyzer.moveRecorder.record(
-                CodeAnalyzer.seconds * 1000,
+                CodeAnalyzer.seconds,
                 String.valueOf(leftLevel) + "," + String.valueOf(rightLevel) + "\r\n"
             );
         }
