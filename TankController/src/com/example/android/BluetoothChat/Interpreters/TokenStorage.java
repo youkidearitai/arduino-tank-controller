@@ -5,32 +5,22 @@ package com.example.android.BluetoothChat.Interpreters;
  */
 public class TokenStorage {
     public int token;
-    public int number;
-    public double mseconds;
+    public double number;
 
     public TokenStorage(int token) {
         this.token = token;
     }
 
-    public TokenStorage(int token, int number) {
-        this.token = token;
-        this.number = number;
-    }
-
     public TokenStorage(int token, double number) {
         this.token = token;
-        this.mseconds = number;
+        this.number = number;
     }
 
     public int getToken() {
         return token;
     }
 
-    public int getNumber() {
+    public double getNumber() {
         return number;
-    }
-
-    public double getMseconds() {
-        return mseconds;
     }
 }

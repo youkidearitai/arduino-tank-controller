@@ -22,7 +22,7 @@ public class ForLoopExpressionImpl extends Expression {
         if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).getToken() == CodeAnalyzer.LOOP) {
             TokenStorage numToken = CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex - 1);
             if (numToken.getToken() == CodeAnalyzer.NUM) {
-                loopLimit = numToken.getNumber();
+                loopLimit = (int)numToken.getNumber();
 
                 if (loopCounter < loopLimit) {
                     loopCounter++;

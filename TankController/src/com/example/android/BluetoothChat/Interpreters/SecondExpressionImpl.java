@@ -14,7 +14,7 @@ public class SecondExpressionImpl extends Expression {
     public void term() {
         if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).getToken() == CodeAnalyzer.NUM) {
             if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex + 1).getToken() == CodeAnalyzer.SEC) {
-                CodeAnalyzer.seconds += (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).getMseconds() * 1000);
+                CodeAnalyzer.seconds += (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex).getNumber() * 1000);
                 Log.d("SecondExpressionImpl", String.valueOf(CodeAnalyzer.seconds));
 
                 if (CodeAnalyzer.tokens.get(CodeAnalyzer.tokenIndex + 2).getToken() == CodeAnalyzer.EOL) {

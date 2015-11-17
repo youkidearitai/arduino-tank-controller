@@ -28,6 +28,7 @@ public class CodeAnalyzer {
     public static final int SEC   = 11;
     public static final int RAPID = 12;
     public static final int NRML  = 13;
+    public static final int COMMA = 14;
 
     public static MoveRecorder moveRecorder = new MoveRecorder();
     public static int seconds = 0;
@@ -51,6 +52,8 @@ public class CodeAnalyzer {
         this.expression = new NormalSpeedExpressionImpl(this.expression);
         this.expression = new SecondExpressionImpl(this.expression);
         this.expression = new ForLoopExpressionImpl(this.expression);
+        this.expression = new CommaSeparatedCalculateExpressionImpl(this.expression);
+
     }
 
     public void analyze() {

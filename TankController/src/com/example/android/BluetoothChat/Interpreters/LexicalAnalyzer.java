@@ -31,6 +31,7 @@ public class LexicalAnalyzer {
     public static final int SEC   = 11;
     public static final int RAPID = 12;
     public static final int NRML  = 13;
+    public static final int COMMA = 14;
 
     private Pattern isint;
 
@@ -49,6 +50,11 @@ public class LexicalAnalyzer {
             String word = this.str.substring(this.position, this.position + 1);
 
             Log.d("LexicalAnalyzer", word);
+
+            if (word.equals(",")) {
+                this.tokens.add(new TokenStorage(COMMA));
+            }
+
             if (word.equals("を")) {
                 this.tokens.add(new TokenStorage(SEPL));
             }
@@ -122,39 +128,39 @@ public class LexicalAnalyzer {
             }
 
             if (word.equals("一")) {
-                this.tokens.add(new TokenStorage(NUM, 1));
+                this.tokens.add(new TokenStorage(NUM, 1.0));
             }
 
             if (word.equals("二")) {
-                this.tokens.add(new TokenStorage(NUM, 2));
+                this.tokens.add(new TokenStorage(NUM, 2.0));
             }
 
             if (word.equals("三")) {
-                this.tokens.add(new TokenStorage(NUM, 3));
+                this.tokens.add(new TokenStorage(NUM, 3.0));
             }
 
             if (word.equals("四")) {
-                this.tokens.add(new TokenStorage(NUM, 4));
+                this.tokens.add(new TokenStorage(NUM, 4.0));
             }
 
             if (word.equals("五")) {
-                this.tokens.add(new TokenStorage(NUM, 5));
+                this.tokens.add(new TokenStorage(NUM, 5.0));
             }
 
             if (word.equals("六")) {
-                this.tokens.add(new TokenStorage(NUM, 6));
+                this.tokens.add(new TokenStorage(NUM, 6.0));
             }
 
             if (word.equals("七")) {
-                this.tokens.add(new TokenStorage(NUM, 7));
+                this.tokens.add(new TokenStorage(NUM, 7.0));
             }
 
             if (word.equals("八")) {
-                this.tokens.add(new TokenStorage(NUM, 8));
+                this.tokens.add(new TokenStorage(NUM, 8.0));
             }
 
             if (word.equals("九")) {
-                this.tokens.add(new TokenStorage(NUM, 9));
+                this.tokens.add(new TokenStorage(NUM, 9.0));
             }
         }
 

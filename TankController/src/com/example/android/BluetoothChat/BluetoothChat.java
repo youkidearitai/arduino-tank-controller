@@ -391,6 +391,10 @@ public class BluetoothChat extends Activity {
                     record.setText("Play");
                     tankController.setCompleteSend();
                     recorder.startPlay();
+                    String code = recorder.reverseEngineeringCode();
+
+                    EditText editText = (EditText) findViewById(R.id.program);
+                    editText.setText(code);
                 }
                 final Handler h = new Handler();
 

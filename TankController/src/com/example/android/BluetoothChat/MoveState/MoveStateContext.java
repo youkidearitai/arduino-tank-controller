@@ -1,5 +1,7 @@
 package com.example.android.BluetoothChat.MoveState;
 
+import java.util.ArrayList;
+
 /**
  * Created by tekitoh on 15/10/02.
  */
@@ -21,6 +23,21 @@ public class MoveStateContext {
                 this.state.getTimestamp(),
                 this.state.getStarttimestamp()
         );
+    }
+
+    public String reverseEngineeringCode() {
+        ArrayList<String> recorder = this.state.getRecorder();
+        ArrayList<Long> timestamp = this.state.getTimestamp();
+        String separator = "を";
+        String code = "";
+        long betweentime;
+
+        for (int i = (recorder.size() - 1); 0 < i; i--) {
+            betweentime = timestamp.get(i - 1) - timestamp.get(i);
+            code += recorder.get(i) + separator + String.valueOf((betweentime / 1000.0)) + "秒";
+        }
+
+        return code;
     }
 
     public void startRecognizer(String program) {
